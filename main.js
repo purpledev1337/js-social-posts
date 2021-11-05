@@ -60,7 +60,8 @@ const postList = document.querySelector(".posts-list");
 for (let i = 0; i < socialFeed.length; i++) {
     // destructuring dell'array per salvarmi delle variabili corrispondenti al valore dei vari oggetti (ad ogni iterazione prende l'oggetto successivo nell'array)
     const {postAuthorName, postAuthorPic, postData, postText, postPhoto, postLikes} = socialFeed[i];
-    postList.innerHTML += `<div class="post">
+    if (postPhoto !== undefined) {
+        postList.innerHTML += `<div class="post">
                                 <div class="post__header">
                                     <div class="post-meta">                    
                                         <div class="post-meta__icon">
@@ -90,7 +91,36 @@ for (let i = 0; i < socialFeed.length; i++) {
                                     </div> 
                                 </div>            
                             </div>`
-}
+    } else {
+        postList.innerHTML += `<div class="post">
+                                    <div class="post__header">
+                                        <div class="post-meta">                    
+                                            <div class="post-meta__icon">
+                                                <img class="profile-pic" src="${postAuthorPic}" alt="Phil Mangione">                    
+                                            </div>
+                                            <div class="post-meta__data">
+                                                <div class="post-meta__author">${postAuthorName}</div>
+                                                <div class="post-meta__time">${postData}</div>
+                                            </div>                    
+                                        </div>
+                                    </div>
+                                    <div class="post__text">${postText}</div>
+                                    <div class="post__footer">
+                                        <div class="likes js-likes">
+                                            <div class="likes__cta">
+                                                <a class="like-button  js-like-button" href="#" data-postid="1">
+                                                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                                    <span class="like-button__label">Mi Piace</span>
+                                                </a>
+                                            </div>
+                                            <div class="likes__counter">
+                                                Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
+                                            </div>
+                                        </div> 
+                                    </div>            
+                                </div>`;
+    }
+};
 
 
 // - Rendiamo il tasto “Mi Piace” cliccabile con incremento del counter dei likes.
