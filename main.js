@@ -55,84 +55,100 @@ console.log(socialFeed);
 // dichiaro la costante per selezionare l'html su cui voglio stampare
 const postList = document.querySelector(".posts-list");
 
-// Creo un ciclo che fino a quando trova elementi dentro l'array stampa nell'html la struttura con all'interno i valori presi
+function stampa() {
+    // Creo un ciclo che fino a quando trova elementi dentro l'array stampa nell'html la struttura con all'interno i valori presi
 for (let i = 0; i < socialFeed.length; i++) {
     // destructuring dell'array per salvarmi delle variabili corrispondenti al valore dei vari oggetti (ad ogni iterazione prende l'oggetto successivo nell'array)
     const {postAuthorName, postAuthorPic, postData, postText, postPhoto, postLikes} = socialFeed[i];
     // (non tutti i post devono avere una immagine) [quindi gestisco il caso],
     if (postPhoto !== undefined) {
     postList.innerHTML += `<div class="post">
-                            <div class="post__header">
-                                <div class="post-meta">                    
-                                    <div class="post-meta__icon">
-                                        <img class="profile-pic" src="${postAuthorPic}" alt="${postAuthorName}">                    
-                                    </div>
-                                    <div class="post-meta__data">
-                                        <div class="post-meta__author">${postAuthorName}</div>
-                                        <div class="post-meta__time">${postData}</div>
-                                    </div>                    
-                                </div>
-                            </div>
-                            <div class="post__text">${postText}</div>
-                            <div class="post__image">
-                                <img src="${postPhoto}" alt="">
-                            </div>
-                            <div class="post__footer">
-                                <div class="likes js-likes">
-                                    <div class="likes__cta">
-                                        <a class="like-button  js-like-button" href="#" data-postid="${i}">
-                                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                                            <span class="like-button__label">Mi Piace</span>
-                                        </a>
-                                    </div>
-                                    <div class="likes__counter">
-                                        Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
-                                    </div>
-                                </div> 
-                            </div>            
-                        </div>`;
-        }   else {
-            postList.innerHTML += `<div class="post">
-                                        <div class="post__header">
-                                            <div class="post-meta">                    
-                                                <div class="post-meta__icon">
-                                                    <img class="profile-pic" src="${postAuthorPic}" alt="${postAuthorName}">                    
-                                                </div>
-                                                <div class="post-meta__data">
-                                                    <div class="post-meta__author">${postAuthorName}</div>
-                                                    <div class="post-meta__time">${postData}</div>
-                                                </div>                    
-                                            </div>
+                                <div class="post__header">
+                                    <div class="post-meta">                    
+                                        <div class="post-meta__icon">
+                                            <img class="profile-pic" src="${postAuthorPic}" alt="${postAuthorName}">                    
                                         </div>
-                                        <div class="post__text">${postText}</div>
-                                        <div class="post__footer">
-                                            <div class="likes js-likes">
-                                                <div class="likes__cta">
-                                                    <a class="like-button  js-like-button" href="#" data-postid="${i}">
-                                                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                                                        <span class="like-button__label">Mi Piace</span>
-                                                    </a>
-                                                </div>
-                                                <div class="likes__counter">
-                                                    Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
-                                                </div>
-                                            </div> 
-                                        </div>            
-                                    </div>`;
-                                }
+                                        <div class="post-meta__data">
+                                            <div class="post-meta__author">${postAuthorName}</div>
+                                            <div class="post-meta__time">${postData}</div>
+                                        </div>                    
+                                    </div>
+                                </div>
+                                <div class="post__text">${postText}</div>
+                                <div class="post__image">
+                                    <img src="${postPhoto}" alt="">
+                                </div>
+                                <div class="post__footer">
+                                    <div class="likes js-likes">
+                                        <div class="likes__cta">
+                                            <a class="like-button  js-like-button" data-postid="${i}">
+                                                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                                <span class="like-button__label">Mi Piace</span>
+                                            </a>
+                                        </div>
+                                        <div class="likes__counter">
+                                            Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
+                                        </div>
+                                    </div> 
+                                </div>            
+                            </div>`;
+        // clickFunction ()
+    }   else {
+        postList.innerHTML += `<div class="post">
+                                    <div class="post__header">
+                                        <div class="post-meta">                    
+                                            <div class="post-meta__icon">
+                                                <img class="profile-pic" src="${postAuthorPic}" alt="${postAuthorName}">                    
+                                            </div>
+                                            <div class="post-meta__data">
+                                                <div class="post-meta__author">${postAuthorName}</div>
+                                                <div class="post-meta__time">${postData}</div>
+                                            </div>                    
+                                        </div>
+                                    </div>
+                                    <div class="post__text">${postText}</div>
+                                    <div class="post__footer">
+                                        <div class="likes js-likes">
+                                            <div class="likes__cta">
+                                                <a class="like-button  js-like-button" data-postid="${i}">
+                                                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                                    <span class="like-button__label">Mi Piace</span>
+                                                </a>
+                                            </div>
+                                            <div class="likes__counter">
+                                                Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
+                                            </div>
+                                        </div> 
+                                    </div>            
+                                </div>`;
+                            }
+                        }
+                        clickFunction ()
+}
 
-        const likeBtn = postList.querySelectorAll(".likes__cta");
-        for (let j = 0; j < likeBtn.length; j++) {
-        likeBtn[j].addEventListener ("click",
-        function() {
-            console.log("Ciao");
-        }
-        );
-        }
-    }
+stampa(); // 1a volta, all'avvio della pagina
 
 // - Rendiamo il tasto “Mi Piace” cliccabile con incremento del counter dei likes.
     // Creo la costante per richiamare il tasto del like
-    // Creo un ciclo per andare ad aggiungere tutte le volte l'evento click al tasto "mi piace" sfruttando l'id dell'ancor
+function clickFunction (){
+    const likeBtn = document.querySelectorAll(".js-like-button");
+    for (let j = 0; j < likeBtn.length; j++) {
+        likeBtn[j].addEventListener("click",
+            function() {
+                this.classList.add("like-button--liked");
+                const index = this.getAttribute("data-postid");
+                console.log(socialFeed[index].postLikes);
+                socialFeed[index].postLikes++
+                // rifai la stampa, manualmente
+                console.log(socialFeed[index].postLikes);
+                stampa();
+                
+            }
+        )
+    }
+
+}
+
+
     
 
