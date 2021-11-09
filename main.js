@@ -15,14 +15,14 @@ const socialFeed = [
         "postData": "4 mesi fa",
         "postText": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
         "postPhoto": "https://unsplash.it/300/300?image=171",
-        "postLikes": "80"
+        "postLikes": 80
     },
     {
         "postAuthorName": "Ajeje Brazorf",
         "postAuthorPic": "https://unsplash.it/300/300?image=16",
         "postData": "1 mese fa",
         "postText": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "postLikes": "65"
+        "postLikes": 65
     },
     {
         "postAuthorName": "Alfa Beta",
@@ -30,7 +30,7 @@ const socialFeed = [
         "postData": "1 mese fa",
         "postText": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
         "postPhoto": "https://unsplash.it/300/300?image=172",
-        "postLikes": "65"
+        "postLikes": 65
     },
     {
         "postAuthorName": "Delta Gamma",
@@ -38,30 +38,26 @@ const socialFeed = [
         "postData": "2 settimane fa",
         "postText": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
         "postPhoto": "https://unsplash.it/300/300?image=173",
-        "postLikes": "55"
+        "postLikes": 55
     },
     {
         "postAuthorName": "Epsilon Zeta",
         "postAuthorPic": "https://unsplash.it/300/300?image=19",
         "postData": "33 minuti fa",
         "postText": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        "postLikes": "12"
+        "postLikes": 12
     }
 ];
-
 console.log(socialFeed);
 
 // - Prendendo come riferimento il layout di esempio presente nell’html, stampiamo i post del nostro feed.
 // dichiaro la costante per selezionare l'html su cui voglio stampare
 const postList = document.querySelector(".posts-list");
-
-function stampa() {
     // Creo un ciclo che fino a quando trova elementi dentro l'array stampa nell'html la struttura con all'interno i valori presi
 for (let i = 0; i < socialFeed.length; i++) {
     // destructuring dell'array per salvarmi delle variabili corrispondenti al valore dei vari oggetti (ad ogni iterazione prende l'oggetto successivo nell'array)
     const {postAuthorName, postAuthorPic, postData, postText, postPhoto, postLikes} = socialFeed[i];
     // (non tutti i post devono avere una immagine) [quindi gestisco il caso],
-    if (postPhoto !== undefined) {
     postList.innerHTML += `<div class="post">
                                 <div class="post__header">
                                     <div class="post-meta">                    
@@ -75,80 +71,52 @@ for (let i = 0; i < socialFeed.length; i++) {
                                     </div>
                                 </div>
                                 <div class="post__text">${postText}</div>
-                                <div class="post__image">
-                                    <img src="${postPhoto}" alt="">
-                                </div>
-                                <div class="post__footer">
-                                    <div class="likes js-likes">
-                                        <div class="likes__cta">
-                                            <a class="like-button  js-like-button" data-postid="${i}">
-                                                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                                                <span class="like-button__label">Mi Piace</span>
-                                            </a>
-                                        </div>
-                                        <div class="likes__counter">
-                                            Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
-                                        </div>
-                                    </div> 
-                                </div>            
                             </div>`;
-        // clickFunction ()
-    }   else {
-        postList.innerHTML += `<div class="post">
-                                    <div class="post__header">
-                                        <div class="post-meta">                    
-                                            <div class="post-meta__icon">
-                                                <img class="profile-pic" src="${postAuthorPic}" alt="${postAuthorName}">                    
-                                            </div>
-                                            <div class="post-meta__data">
-                                                <div class="post-meta__author">${postAuthorName}</div>
-                                                <div class="post-meta__time">${postData}</div>
-                                            </div>                    
-                                        </div>
+
+    const postDiv = document.querySelectorAll(".post")[i];
+    if (postPhoto !== undefined) {
+    postDiv.innerHTML += `<div class="post__image">
+                                <img src="${postPhoto}" alt="">
+                          </div>`;
+    }
+    postDiv.innerHTML += `<div class="post__footer">
+                                <div class="likes js-likes">
+                                    <div class="likes__cta">
+                                        <a class="like-button  js-like-button" data-postid="${i}">
+                                            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                            <span class="like-button__label">Mi Piace</span>
+                                        </a>
                                     </div>
-                                    <div class="post__text">${postText}</div>
-                                    <div class="post__footer">
-                                        <div class="likes js-likes">
-                                            <div class="likes__cta">
-                                                <a class="like-button  js-like-button" data-postid="${i}">
-                                                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                                                    <span class="like-button__label">Mi Piace</span>
-                                                </a>
-                                            </div>
-                                            <div class="likes__counter">
-                                                Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
-                                            </div>
-                                        </div> 
-                                    </div>            
-                                </div>`;
-                            }
-                        }
-                        clickFunction ()
-}
-
-stampa(); // 1a volta, all'avvio della pagina
-
+                                    <div class="likes__counter">
+                                        Piace a <b id="like-counter-1" class="js-likes-counter">${postLikes}</b> persone
+                                    </div>
+                                </div> 
+                              </div>`;
+                        
 // - Rendiamo il tasto “Mi Piace” cliccabile con incremento del counter dei likes.
-    // Creo la costante per richiamare il tasto del like
-function clickFunction (){
-    const likeBtn = document.querySelectorAll(".js-like-button");
+// Creo la costante per richiamare il tasto del like
+    const likeBtn = document.querySelectorAll(".like-button");
     for (let j = 0; j < likeBtn.length; j++) {
         likeBtn[j].addEventListener("click",
             function() {
-                this.classList.add("like-button--liked");
                 const index = this.getAttribute("data-postid");
                 console.log(socialFeed[index].postLikes);
-                socialFeed[index].postLikes++
-                // rifai la stampa, manualmente
+                if(this.classList == "like-button js-like-button like-button--liked") {
+                    this.classList.remove("like-button--liked");
+                    let likesCounter = document.getElementsByClassName("js-likes-counter");
+                    likesCounter[j].innerHTML = socialFeed[index].postLikes - 1;
+                    socialFeed[index].postLikes--
+                } else {
+                    this.classList.add("like-button--liked");
+                    let likesCounter = document.getElementsByClassName("js-likes-counter");
+                    likesCounter[j].innerHTML = socialFeed[index].postLikes + 1;
+                    socialFeed[index].postLikes++
+                }
                 console.log(socialFeed[index].postLikes);
-                stampa();
-                
             }
         )
     }
-
 }
 
 
-    
 
